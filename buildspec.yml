@@ -20,4 +20,4 @@ phases:
 
   build:
     commands:
-      - composer install --no-progress --no-suggest
+      - echo 'toto'
