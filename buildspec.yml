@@ -1,0 +1,23 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - |
+          export DEBIAN_FRONTEND=noninteractive
+          #Install php7.3
+          apt-get update
+          apt-get install -y  software-properties-common
+          LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
+          apt-get update
+          # Install PHP
+          apt-get install -y php7.3\
+                  unzip
+          #Install composer
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          php composer-setup.php ;
+          php -r "unlink('composer-setup.php');" ;
+          mv composer.phar /usr/local/bin/composer
+
+  build:
+    commands:
+      - composer install --no-progress --no-suggest
